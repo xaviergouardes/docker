@@ -1,0 +1,25 @@
+#Fichier LDIF de chargement initial
+# ldapadd -v -x -f /tmp/init-ldap.ldif -D "cn=ldap-manager,dc=ma-region,dc=fr" -w toto
+# ldapsearch -x -LLL -b dc=ma-region,dc=fr
+# ldapsearch -x -LLL -b cn=axyus,ou=users,dc=ma-region,dc=fr
+
+version: 1
+
+dn: dc=ma-region,dc=fr
+objectClass: dcObject
+objectClass: organization
+dc: ma-region
+o : ma-region
+
+dn: ou=users,dc=ma-region,dc=fr
+objectClass: organizationalUnit
+ou: users
+
+dn: cn=axyus,ou=users,dc=ma-region,dc=fr
+cn: axYus_Nom_Prenom
+sn: axYus_sn
+objectClass: inetOrgPerson
+userPassword: toto
+uid: axyus
+mail: axyus@axyus.com
+

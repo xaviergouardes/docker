@@ -17,7 +17,7 @@ RUN cd /etc/rsyslog.d && echo "local4.*                        /var/log/ldap.log
 COPY olcDatabase={1}monitor.ldif /etc/openldap/slapd.d/cn=config
 COPY olcDatabase={2}bdb.ldif /etc/openldap/slapd.d/cn=config
 COPY init-ldap.ldif /tmp
-COPY config /tmp
+COPY config.php /tmp
 COPY phpldapadmin-1.2.3.tgz /var/www/html
 
 RUN chown -R ldap:ldap /etc/openldap ; service slapd start ; ldapadd -v -x -f /tmp/init-ldap.ldif -D "cn=ldap-manager,dc=ma-region,dc=fr" -w toto

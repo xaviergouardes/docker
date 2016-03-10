@@ -1,8 +1,8 @@
 FROM centos:6
 MAINTAINER Xavier Gouardes <xavier.gouardes@laposte.net>
 
-LABEL name="OpenLdap RCVL" \
-    vendor="RCVL" \
+LABEL name="OpenLdap Region" \
+    vendor="xtechnologies" \
     license="GPLv2" \
     build-date="2016-03-02"
 

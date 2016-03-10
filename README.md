@@ -6,4 +6,4 @@ Cette image docker contient une installation d'openldap et de l'application phpl
 
 ## Pour lancer un container ##
 
-$ docker run -d -it -v /var/dockerdisk/:/var/dockerdisk --privileged -p 80:80 -p 389:389 open-ldap-region
+`$ docker run -d -it -v /var/dockerdisk/:/var/dockerdisk --privileged -p 80:80 -p 389:389 open-ldap-region`

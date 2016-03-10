@@ -10,15 +10,8 @@ Cette image docker contient une installation d'openldap et de l'application phpl
 
 ### Builder l'image ###
 Une fois le checkout fait , se positionner dans le répertoire contenant le `Dockerfile` et lancer la commande suivante
-<<<<<<< Updated upstream
-	`$ docker build -t openldap-region .`
-### Lancer un container ###
-	`$ docker run -d -it -v /var/dockerdisk/:/var/dockerdisk --privileged -p 80:80 -p 389:389 openldap-region`
-=======
 	$ docker build -t openldap-region .
 
 ### Lancer un container ###
 	$ docker run -d -it -v /var/dockerdisk/:/var/dockerdisk --privileged -p 80:80 -p 389:389 openldap-region
 
-
->>>>>>> Stashed changes

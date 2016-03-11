@@ -33,196 +33,78 @@ userPassword: toto
 uid: axyus
 mail: axyus@axyus.com
 
-dn: cn=sebastien.kasprzak,ou=users,dc=ma-region,dc=fr
-cn: Sébastien KASPRZAK
-sn: KASPRZAK
-givenName: Sébastien
+dn: cn=solaine.neufville,ou=users,dc=ma-region,dc=fr
+cn: Solaine Neufville
+sn: Neufville
+givenName: Solaine
 objectClass: inetOrgPerson
 userPassword: toto
-uid: sebastien.kasprzak
-mail: Sebastien.KASPRZAK@regioncentre.fr
+uid: solaine.neufville
+mail: solaine.neufville@region.fr
 
-dn: cn=anne.seite-budor,ou=users,dc=ma-region,dc=fr
-cn: Anne SEITE-BUDOR
-sn: SEITE-BUDOR
-givenName: Anne
+dn: cn=gustave.bonsaint,ou=users,dc=ma-region,dc=fr
+cn: Gustave Bonsaint
+sn: Bonsaint
+givenName: Gustave
 objectClass: inetOrgPerson
 userPassword: toto
-uid: anne.seite-budor
-mail: Anne.SEITE-BUDOR@regioncentre.fr
+uid: gustave.bonsaint
+mail: gustave.bonsaintregion.fr
 
-dn: cn=stephane.pain,ou=users,dc=ma-region,dc=fr
-cn: Stéphane PAIN
-sn: PAIN
-givenName: Stéphane
+dn: cn=varden.savard,ou=users,dc=ma-region,dc=fr
+cn: Varden Savard
+sn: Savard
+givenName: Varden
 objectClass: inetOrgPerson
 userPassword: toto
-uid: stephane.pain
-mail: Stephane.PAIN@regioncentre.fr
+uid: varden.savard
+mail: varden.savard@region.fr
 
-
-dn: cn=adrien.chiron,ou=users,dc=ma-region,dc=fr
-cn: Adrien CHIRON
-sn: CHIRON
-givenName: Adrien
+dn: cn=maureen.brousseau,ou=users,dc=ma-region,dc=fr
+cn: Maureen Brousseau
+sn: Brousseau
+givenName: Maureen
 objectClass: inetOrgPerson
 userPassword: toto
-uid: adrien.chiron
-mail: Adrien.CHIRON@regioncentre.fr
+uid: maureen.brousseau
+mail: maureen.brousseau@region.fr
 
-dn: cn=celine.blan,ou=users,dc=ma-region,dc=fr
-cn: Celine BLAN
-sn: BLAN
-givenName: Celine
-objectClass: inetOrgPerson
-userPassword: toto
-uid: celine.blan
-mail: Celine.BLAN@regioncentre.fr
-
-dn: cn=leila.khelil,ou=users,dc=ma-region,dc=fr
-cn: Leila KHELIL
-sn: KHELIL
+dn: cn=anouk.couture,ou=users,dc=ma-region,dc=fr
+cn: Anouk Couture
+sn: Couture
 givenName: Leila
 objectClass: inetOrgPerson
 userPassword: toto
-uid: leila.khelil
-mail: Leila.KHELIL@regioncentre.fr
+uid: anouk.couture
+mail: anouk.couture@region.fr
 
-dn: cn=valerie.laurent,ou=users,dc=ma-region,dc=fr
-cn: Valérie LAURENT
-sn: LAURENT
-givenName: Valérie
+dn: cn=jeannine.rocher,ou=users,dc=ma-region,dc=fr
+cn: Jeannine Rocher
+sn: Rocher
+givenName: Jeannine
 objectClass: inetOrgPerson
 userPassword: toto
-uid: valerie.laurent
-mail: Valerie.LAURENT@regioncentre.fr
+uid: jeannine.rocher
+mail: jeannine.rocher@region.fr
 
-dn: cn=samuel.blaizeau,ou=users,dc=ma-region,dc=fr
-cn: Samuel BLAIZEAU
-sn: BLAIZEAU
-givenName: Samuel
+dn: cn=senior.parrot,ou=users,dc=ma-region,dc=fr
+cn: Senior Parrot
+sn: Parrot
+givenName: Senior
 objectClass: inetOrgPerson
 userPassword: toto
-uid: samuel.blaizeau
-mail: Samuel.BLAIZEAU@regioncentre.fr
-
-dn: cn=clement.nollet,ou=users,dc=ma-region,dc=fr
-cn: Clément NOLLET
-sn: NOLLET
-givenName: Clément
-objectClass: inetOrgPerson
-userPassword: toto
-uid: clement.nollet
-mail: Clement.NOLLET@regioncentre.fr
-
-dn: cn=martine.bourgoin,ou=users,dc=ma-region,dc=fr
-cn: Martine BOURGOIN
-sn: BOURGOIN
-givenName: Martine
-objectClass: inetOrgPerson
-userPassword: toto
-uid: martine.bourgoin
-mail: Martine.BOURGOIN@regioncentre.fr
-
-dn: cn=marie-laure.gilles,ou=users,dc=ma-region,dc=fr
-cn: Marie-Laure GILLES
-sn: GILLES
-givenName: Marie-Laure
-objectClass: inetOrgPerson
-userPassword: toto
-uid: marie-laure.gilles
-mail: Marie-Laure.GILLES@regioncentre.fr
-
-dn: cn=graziella.fafournoux,ou=users,dc=ma-region,dc=fr
-cn: Graziella FAFOURNOUX
-sn: FAFOURNOUX
-givenName: Graziella
-objectClass: inetOrgPerson
-userPassword: toto
-uid: graziella.fafournoux
-mail: Graziella.FAFOURNOUX@regioncentre.fr
-
-dn: cn=stephane.decanton,ou=users,dc=ma-region,dc=fr
-cn: Stéphane DECANTON
-sn: DECANTON
-givenName: Stéphane
-objectClass: inetOrgPerson
-userPassword: toto
-uid: stephane.decanton
-mail: Stephane.DECANTON@regioncentre.fr
-
-dn: cn=emmanuelle.bellevillejan,ou=users,dc=ma-region,dc=fr
-cn: Emmanuelle BELLEVILLE JAN
-sn: BELLEVILLE JAN
-givenName: Emmanuelle
-objectClass: inetOrgPerson
-userPassword: toto
-uid: emmanuelle.bellevillejan
-mail: Emmanuelle.DECANTON@regioncentre.fr
-
-dn: cn=alexandra.gamelin,ou=users,dc=ma-region,dc=fr
-cn: Alexandra GAMELIN
-sn: GAMELIN
-givenName: Alexandra
-objectClass: inetOrgPerson
-userPassword: toto
-uid: alexandra.gamelin
-mail: Alexandra.GAMELIN@regioncentre.fr
-
-dn: cn=delphine.derwey,ou=users,dc=ma-region,dc=fr
-cn: Delphine DERWEY
-sn: DERWEY
-givenName: Delphine
-objectClass: inetOrgPerson
-userPassword: toto
-uid: delphine.derwey
-mail: Delphine.DERWEY@regioncentre.fr
-
-dn: cn=isabelle.ibert,ou=users,dc=ma-region,dc=fr
-cn: Isabelle IBERT
-sn: IBERT
-givenName: Isabelle
-objectClass: inetOrgPerson
-userPassword: toto
-uid: isabelle.ibert
-mail: Isabelle.IBERT@regioncentre.fr
-
-dn: cn=francois.vuerich,ou=users,dc=ma-region,dc=fr
-cn: François VUERICH
-sn: VUERICH
-givenName: François
-objectClass: inetOrgPerson
-userPassword: toto
-uid: francois.vuerich
-mail: fvuerich@integra.fr
+uid: senior.parrot
+mail: senior.parrot@region.fr
 
 dn: cn=ZEFIR,ou=groups,dc=ma-region,dc=fr
 changetype: modify
 add: member
-member: cn=sebastien.kasprzak,ou=users,dc=ma-region,dc=fr
-member: cn=anne.seite-budor,ou=users,dc=ma-region,dc=fr
-member: cn=stephane.pain,ou=users,dc=ma-region,dc=fr
-member: cn=adrien.chiron,ou=users,dc=ma-region,dc=fr
-member: cn=celine.blan,ou=users,dc=ma-region,dc=fr
-member: cn=leila.khelil,ou=users,dc=ma-region,dc=fr
-member: cn=valerie.laurent,ou=users,dc=ma-region,dc=fr
-member: cn=samuel.blaizeau,ou=users,dc=ma-region,dc=fr
-member: cn=clement.nollet,ou=users,dc=ma-region,dc=fr
-member: cn=martine.bourgoin,ou=users,dc=ma-region,dc=fr
-member: cn=marie-laure.gilles,ou=users,dc=ma-region,dc=fr
-member: cn=graziella.fafournoux,ou=users,dc=ma-region,dc=fr
-member: cn=stephane.decanton,ou=users,dc=ma-region,dc=fr
-member: cn=emmanuelle.bellevillejan,ou=users,dc=ma-region,dc=fr
-member: cn=alexandra.gamelin,ou=users,dc=ma-region,dc=fr
-member: cn=delphine.derwey,ou=users,dc=ma-region,dc=fr
-member: cn=isabelle.ibert,ou=users,dc=ma-region,dc=fr
 member: cn=axyus,ou=users,dc=ma-region,dc=fr
-member: cn=francois.vuerich,ou=users,dc=ma-region,dc=fr
-
-
-
-
-
-
-
+member: cn=solaine.neufville,ou=users,dc=ma-region,dc=fr
+member: cn=gustave.bonsaint,ou=users,dc=ma-region,dc=fr
+member: cn=varden.savard,ou=users,dc=ma-region,dc=fr
+member: cn=maureen.brousseau,ou=users,dc=ma-region,dc=fr
+member: cn=anouk.couture,ou=users,dc=ma-region,dc=fr
+member: cn=jeannine.rocher,ou=users,dc=ma-region,dc=fr
+member: cn=senior.parrot,ou=users,dc=ma-region,dc=fr
 

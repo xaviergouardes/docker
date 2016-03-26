@@ -19,8 +19,8 @@ Plus toutes les autres commandes docker-compose
 	$ docker run -p 8080:8080 -p 50000:50000 -u root --link docker-engine-for-jenkins:docker-engine-for-jenkins --volumes-from jenkins_data_home --name jenkins-test jenkins
 
 ## Paramétrage pour docker dans jenkins : ##
-1 - Faire un installeur pour le client docker dans le paramétrage de jenkins
-2 - dans le job indiquer l'uri de l'engine docker : tcp://docker-engine-for-jenkins:2375
+- Faire un installeur pour le client docker dans le paramétrage de jenkins
+- dans le job indiquer l'uri de l'engine docker : tcp://docker-engine-for-jenkins:2375
 
 Plugin : Cloudbee "CloudBees Docker Custom Build Environment Plugin"
 

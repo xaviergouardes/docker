@@ -1,0 +1,25 @@
+
+jenkins-in-docker:
+  image :  jenkins
+  volumes_from: 
+  - jenkins-data
+  links:
+  - docker-engine-for-jenkins:docker-engine-for-jenkins
+  ports:
+  - 8080:8080
+  - 50000:50000
+  user : root
+
+docker-engine-for-jenkins:
+  image :  docker:1.10-dind
+  volumes_from: 
+  - jenkins-data
+  user : root
+  privileged: true
+
+jenkins-data:
+  image : busybox
+  volumes : 
+  - /var/jenkins_home
+  - /tmp
+

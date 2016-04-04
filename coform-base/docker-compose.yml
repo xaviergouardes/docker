@@ -1,0 +1,14 @@
+version: '2'
+services:
+  coform-db:
+    build: .
+    ports:
+    - "8080:8080"
+    - "1521:1521"
+
+#coform-db:
+#  build: .
+#  ports:
+#  - 8080:8080
+#  - 1521:1521
+

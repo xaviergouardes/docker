@@ -1,21 +1,37 @@
 # oracle11 XE #
+Oracle Express Edition 11g Release 2 on Ubuntu 14.04.1 LTS
+============================
 
 ## Description ##
-	https://hub.docker.com/r/alexeiled/docker-oracle-xe-11g/
+	https://hub.docker.com/r/wnameless/oracle-xe-11g/
 
 ## Commandes docker ##
-	$docker pull alexeiled/docker-oracle-xe-11g
+```
+docker pull wnameless/oracle-xe-11g
+```
 
-	$docker run -d -p 1521:1521 -p 8080:8080 -v /var/dockerdisk:/tmp alexeiled/docker-oracle-xe-11g
+Run with 22 and 1521 ports opened:
+```
+docker run -d -p 49160:22 -p 49161:1521 wnameless/oracle-xe-11g
+```
 
-	$hostname: localhost
-	$port: 49161
-	$sid: xe
-	$username: system
-	$password: oracle
+Connect database with following setting:
+```
+hostname: localhost
+port: 49161
+sid: xe
+username: system
+password: oracle
+```
 
-	$url: http://localhost:49162/apex
-	$workspace: INTERNAL
-	$user: ADMIN
-	$password: oracle
+Password for SYS & SYSTEM
+```
+oracle
+```
+
+Login by SSH
+```
+ssh root@localhost -p 49160
+password: admin
+```
 

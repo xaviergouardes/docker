@@ -35,6 +35,24 @@ Image permettant de tester l'installation successives de plusieurs version de la
 	$username: system
 	$password: oracle
 
+```
+
+Step 11 : RUN ps && bash --version && ls -l /bin/sh && ls -l /bin/dash
+ ---> Running in b3953f41a1ac
+  PID TTY          TIME CMD
+    1 ?        00:00:00 sh
+    9 ?        00:00:00 ps
+GNU bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+
+This is free software; you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+lrwxrwxrwx. 1 root root 4 Feb 19  2014 /bin/sh -> dash
+-rwxr-xr-x. 1 root root 121272 Feb 19  2014 /bin/dash
+
+```
+
 
 
 ============================

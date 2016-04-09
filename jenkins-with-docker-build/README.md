@@ -26,13 +26,14 @@ Plugin : Cloudbee "CloudBees Docker Custom Build Environment Plugin"
 
 ## Test avec Coform ##
 Faire un job de build, qui copie les fichiers du /tmp dans son workspace. Ce job simule la phase de build.
+
 Faire un job de déploye qui :
-1 - partage le workspace du premier
+- 1 - partage le workspace du premier
 	Options avancées du projet > Utiliser un répertoire de travail spécifique > Répertoire = /var/jenkins_home/jobs/coform-build/workspace
-2 - Se build dans docker à partir d'une image wnameless/oracle-xe-11g
+- 2 - Se build dans docker à partir d'une image wnameless/oracle-xe-11g
 	Build inside a Docker container > Pull docker image from repository > image id/tag = wnameless/oracle-xe-11g
 					> Docker Host URI = tcp://docker-engine-for-jenkins:2375
-3 - Faire un step de build sh avec les paramétres ci-desous
+- 3 - Faire un step de build sh avec les paramétres ci-desous
 
 ```
 ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe; export ORACLE_HOME;

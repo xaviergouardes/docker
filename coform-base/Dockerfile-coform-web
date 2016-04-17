@@ -1,0 +1,59 @@
+FROM centos:6
+MAINTAINER Xavier Gouardes <xavier.gouardes@laposte.net>
+
+LABEL name="Coform Web" \
+    vendor="xtechnologies" \
+    license="GPLv2" \
+    build-date="2016-04-16"
+
+RUN echo "Build de la partie web ..."
+
+RUN yum -y update && \
+    yum -y install java-1.6.0-openjdk-devel && \
+    yum -y install tomcat6 tomcat6-webapps tomcat6-admin-webapps
+
+RUN yum -y install wget && \
+    cd /usr/share && \
+    wget http://mirror.olnevhost.net/pub/apache/maven/binaries/apache-maven-3.2.1-bin.tar.gz && \
+    tar xzvf apache-maven-3.2.1-bin.tar.gz && \
+    export M2_HOME=/usr/share/apache-maven-3.2.1 && \
+    export M2=$M2_HOME/bin && \
+    export PATH=$M2:$PATH && \
+    mvn -version && \
+    mkdir -p /coform-src
+
+ENV M2_HOME=/usr/share/apache-maven-3.2.1
+ENV M2=$M2_HOME/bin
+ENV PATH=$M2:$PATH
+
+ADD COFORM-UNIFIE /coform-src
+
+#RUN cd /coform-src && \
+#    mvn -U clean package -P rcvl-recette
+
+RUN cd /usr/share/tomcat6/conf/Catalina/localhost && touch coform.xml && \
+    echo "<Context crossContext=\"true\" reloadable=\"true\">" >> coform.xml && \
+    echo "  <Manager className=\"org.apache.catalina.session.StandardManager\" saveOnRestart=\"false\"/> " >> coform.xml && \
+    echo "  <Resource auth=\"Container\" " >> coform.xml && \
+    echo "	driverClassName=\"oracle.jdbc.driver.OracleDriver\" " >> coform.xml && \ 
+    echo "	maxActive=\"4\" " >> coform.xml && \ 
+    echo "	maxIdle=\"1\" " >> coform.xml && \
+    echo "	maxWait=\"5000\" " >> coform.xml && \
+    echo "	name=\"jdbc/craCoformDB\" " >> coform.xml && \
+    echo "	username=\"COFORM\" " >> coform.xml && \
+    echo "	password=\"COFORM\" " >> coform.xml && \
+    echo "	type=\"javax.sql.DataSource\" " >> coform.xml && \
+    echo "	url=\"jdbc:oracle:thin:@coform-db:1521:XE\" " >> coform.xml && \
+    echo "	defaultAutoCommit=\"false\" " >> coform.xml && \
+    echo "	validationQuery=\"SELECT 1 FROM DUAL\"/> " >> coform.xml && \
+    echo "</Context> " >> coform.xml && \
+    cp -R /coform-src/web/target/coform-web /usr/share/tomcat6/webapps/coform && \
+    cp /coform-src/web/src/main/assembly/ressources/lib/ojdbc6.jar /usr/share/tomcat6/lib
+
+RUN sed -i -e "s/value=\"info\"/value=\"debug\"/g" /usr/share/tomcat6/webapps/coform/WEB-INF/log4j.xml
+
+RUN service tomcat6 restart
+
+EXPOSE 8080
+
+CMD sleep 20s && service tomcat6 start && tail -f /var/log/tomcat6/catalina.out

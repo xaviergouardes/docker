@@ -1,14 +1,34 @@
 version: '2'
 services:
-  coform-db:
-    build: .
+  coform-web:
+    build:
+      context: .
+      dockerfile: Dockerfile-coform-web
+    container_name: coform-web
+    depends_on:
+      - coform-db
+      - coform-ldap
     ports:
-    - "8080:8080"
-    - "1521:1521"
+      - "8080:8080"
+    links:
+      - coform-db:coform-db
+      - coform-ldap:cas-ldap
 
-#coform-db:
-#  build: .
-#  ports:
-#  - 8080:8080
-#  - 1521:1521
+  coform-db:
+    build:
+      context: .
+      dockerfile: Dockerfile-coform-db
+    container_name: coform-db
+    ports:
+      - "1521:1521"
+
+  coform-ldap:
+    image: xtechnologies/openldap-region
+    command: tail -f /entrypoint.sh
+    container_name: coform-ldap
+    ports:
+      - "389:389"
+      - "80:80"
+
+
 

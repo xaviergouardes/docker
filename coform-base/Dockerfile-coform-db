@@ -1,0 +1,60 @@
+FROM wnameless/oracle-xe-11g:latest
+MAINTAINER Xavier Gouardes <xavier.gouardes@laposte.net>
+
+LABEL name="Coform Base" \
+    vendor="xtechnologies" \
+    license="GPLv2" \
+    build-date="2016-04-03"
+
+ADD COFORM-UNIFIE/base/src /coform-base-src
+RUN chmod -R 777 /coform-base-src;
+RUN mkdir -p /home/coform; chmod 777 /home/coform;
+
+ENV ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe 
+ENV PATH=$ORACLE_HOME/bin:$PATH 
+ENV ORACLE_SID=XE
+
+ENV DATABASE_SID_COFORM=XE
+ENV DATABASE_USER_COFORM=COFORM
+ENV DATABASE_PASSWORD_COFORM=COFORM
+
+RUN touch /coform-base-src/init.sql; \
+	echo "create tablespace COFORM_DAT_N01 datafile '/home/coform/COFORM_DAT_N01.ORA' size 100m;" >>  /coform-base-src/init.sql; \
+	echo "create tablespace COFORM_IDX_N01 datafile '/home/coform/COFORM_IDX_N01.ORA' size 100m;"  >>  /coform-base-src/init.sql; \
+	echo "CREATE USER \"COFORM\" IDENTIFIED BY \"COFORM\" DEFAULT TABLESPACE \"COFORM_DAT_N01\" TEMPORARY TABLESPACE \"TEMP\";" >>  /coform-base-src/init.sql; \
+	echo "GRANT \"CONNECT\" TO \"COFORM\";" >>  /coform-base-src/init.sql; \
+	echo "GRANT \"RESOURCE\" TO \"COFORM\";" >>  /coform-base-src/init.sql; \
+	echo "GRANT SELECT ANY DICTIONARY TO \"COFORM\";" >>  /coform-base-src/init.sql; \
+	echo "GRANT UNLIMITED TABLESPACE TO \"COFORM\";" >>  /coform-base-src/init.sql; \
+	echo "GRANT CREATE PROCEDURE TO \"COFORM\";" >>  /coform-base-src/init.sql; \
+	echo "GRANT EXECUTE ANY PROCEDURE TO \"COFORM\";" >>  /coform-base-src/init.sql; \
+	echo "ALTER USER \"COFORM\" QUOTA UNLIMITED ON \"COFORM_DAT_N01\";" >>  /coform-base-src/init.sql; \
+	echo "ALTER USER \"COFORM\" QUOTA UNLIMITED ON \"COFORM_IDX_N01\";" >>  /coform-base-src/init.sql; \
+	echo "exit;" >>  /coform-base-src/init.sql;
+
+RUN cat /coform-base-src/init.sql;
+
+RUN touch /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='ldap://cas-ldap:389' where PRM_NOM = 'ldap.server.url';" >>  /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='toto' where PRM_NOM = 'ldap.root.dn.pwd';" >>  /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='cn=ldap-manager,dc=ma-region,dc=fr' where PRM_NOM = 'ldap.root.dn';" >>  /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='ou=users,dc=ma-region,dc=fr' where PRM_NOM = 'ldap.path.to.person';" >>  /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='cn=ZEFIR,ou=groups,dc=ma-region,dc=fr' where PRM_NOM = 'ldap.path.to.group';" >>  /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='/' where PRM_NOM = 'ldap.base.dn';" >>  /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='uid' where PRM_NOM = 'ldap.search.attribute';" >>  /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='member' where PRM_NOM = 'ldap.group.member.attribute';" >>  /coform-base-src/parametre.sql; \
+	echo "update PARAMETRE set PRM_VALEUR ='1' where PRM_NOM = 'GESTION_PRESTATIONS_FINANCEES';" >>  /coform-base-src/parametre.sql; \
+	echo "Insert into PARAMETRE (PRM_NOM,FON_CODE,PRM_DESCRIPTION,PRM_VALEUR) values ('ETAT_FICHE_ACTION_DEFAUT',null,'Etat par défaut de la fiche action','03');" >>  /coform-base-src/parametre.sql; \
+	echo "exit;"  >>  /coform-base-src/parametre.sql;
+
+RUN cat /coform-base-src/parametre.sql;
+
+RUN 	/usr/sbin/startup.sh && \
+	sqlplus system/oracle@localhost/XE @/coform-base-src/init.sql && \
+	/coform-base-src/main/install/06.00.00_complet/lanceur_RCVL.sh && \
+	sqlplus COFORM/COFORM@localhost/XE @/coform-base-src/parametre.sql 
+
+EXPOSE 1521
+
+CMD /usr/sbin/startup.sh && /usr/sbin/sshd -D
+

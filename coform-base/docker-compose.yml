@@ -24,7 +24,6 @@ services:
 
   coform-ldap:
     image: xtechnologies/openldap-region
-    command: tail -f /entrypoint.sh
     container_name: coform-ldap
     ports:
       - "389:389"

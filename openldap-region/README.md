@@ -7,4 +7,11 @@ Une fois le checkout fait , se positionner dans le répertoire contenant le `Doc
 	$ docker build -t openldap-region .
 
 ## Lancer un container ##
-	$ docker run -d -it -v /var/dockerdisk/:/var/dockerdisk --privileged -p 80:80 -p 389:389 openldap-region
+	$ docker run -it -p 80:80 -p 389:389 -d xtechnologies/openldap-region
+
+## Php Ldap Admin ##
+login : cn=ldap-manager,dc=ma-region,dc=fr
+pwd : toto
+url : http://localhost:80/ldapadmin
+
+utilisateur axyus / toto

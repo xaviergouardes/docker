@@ -28,8 +28,57 @@ ENV PATH=$M2:$PATH
 
 ADD COFORM-UNIFIE /coform-src
 
-#RUN cd /coform-src && \
-#    mvn -U clean package -P rcvl-recette
+RUN mkdir -p /root/.m2 && chmod 777 /root/.m2 && \
+    touch /root/.m2/setting.xml && \
+    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" >> /root/.m2/setting.xml && \
+    echo "<settings>" >> /root/.m2/setting.xml && \
+    echo "  <profiles>" >> /root/.m2/setting.xml && \
+    echo "	<profile>" >> /root/.m2/setting.xml && \
+    echo "	  <id>XGO</id>" >> /root/.m2/setting.xml && \
+    echo "	  <properties>" >> /root/.m2/setting.xml && \
+    echo "		<JAVA_1_7_HOME>C:/Program Files/Java/jdk1.7.0_40</JAVA_1_7_HOME>" >> /root/.m2/setting.xml && \
+    echo "		<distribRepoUrl>http://10.0.0.133:8080/archiva/repository/internal</distribRepoUrl>" >> /root/.m2/setting.xml && \
+    echo "	  </properties>" >> /root/.m2/setting.xml && \
+    echo "	  <repositories>" >> /root/.m2/setting.xml && \
+    echo "		<repository>" >> /root/.m2/setting.xml && \
+    echo "		  <id>axyus-repository</id>" >> /root/.m2/setting.xml && \
+    echo "		  <name>axyus-repository</name>" >> /root/.m2/setting.xml && \
+    echo "		  <url>http://10.0.0.133:8080/archiva/repository/internal</url>" >> /root/.m2/setting.xml && \
+    echo "		</repository>" >> /root/.m2/setting.xml && \
+    echo "	  </repositories>" >> /root/.m2/setting.xml && \
+    echo "	  <pluginRepositories>" >> /root/.m2/setting.xml && \
+    echo "		<pluginRepository>" >> /root/.m2/setting.xml && \
+    echo "		  <id>axyus-repository</id>" >> /root/.m2/setting.xml && \
+    echo "		  <name>axyus-repository</name>" >> /root/.m2/setting.xml && \
+    echo "		  <url>http://10.0.0.133:8080/archiva/repository/internal</url>" >> /root/.m2/setting.xml && \
+    echo "		</pluginRepository>" >> /root/.m2/setting.xml && \
+    echo "	  </pluginRepositories>" >> /root/.m2/setting.xml && \
+    echo "	</profile>" >> /root/.m2/setting.xml && \
+    echo "  </profiles>" >> /root/.m2/setting.xml && \
+    echo "  <activeProfiles>" >> /root/.m2/setting.xml && \
+    echo "	<activeProfile>XGO</activeProfile>" >> /root/.m2/setting.xml && \
+    echo "  </activeProfiles>" >> /root/.m2/setting.xml && \
+    echo "  <servers>" >> /root/.m2/setting.xml && \
+    echo "	<server>" >> /root/.m2/setting.xml && \
+    echo "	  <id>axyus-repository</id>" >> /root/.m2/setting.xml && \
+    echo "	  <username>admin</username>" >> /root/.m2/setting.xml && \
+    echo "	  <password>manager1</password>" >> /root/.m2/setting.xml && \
+    echo "	</server>" >> /root/.m2/setting.xml && \
+    echo "  </servers>" >> /root/.m2/setting.xml && \
+    echo "  <mirrors>" >> /root/.m2/setting.xml && \
+    echo "   <mirror>" >> /root/.m2/setting.xml && \
+    echo "     <id>mirror-axyus.com</id>" >> /root/.m2/setting.xml && \
+    echo "     <name>Mirror axyus</name>" >> /root/.m2/setting.xml && \
+    echo "     <url>http://10.0.0.133:8080/archiva/repository/internal</url>" >> /root/.m2/setting.xml && \
+    echo "     <mirrorOf>central</mirrorOf>" >> /root/.m2/setting.xml && \
+    echo "   </mirror>" >> /root/.m2/setting.xml && \
+    echo "  </mirrors>" >> /root/.m2/setting.xml && \
+    echo "</settings>" >> /root/.m2/setting.xml && \
+    cat /root/.m2/setting.xml
+
+RUN cd /coform-src && \
+    mvn –-settings /root/.m2/setting.xml -U clean package -P rcvl-recette  && \ 
+    rm -rf /root/.m2/repository
 
 RUN cd /usr/share/tomcat6/conf/Catalina/localhost && touch coform.xml && \
     echo "<Context crossContext=\"true\" reloadable=\"true\">" >> coform.xml && \
@@ -52,8 +101,10 @@ RUN cd /usr/share/tomcat6/conf/Catalina/localhost && touch coform.xml && \
 
 RUN sed -i -e "s/value=\"info\"/value=\"debug\"/g" /usr/share/tomcat6/webapps/coform/WEB-INF/log4j.xml
 
-RUN service tomcat6 restart
+RUN service tomcat6 restart 
+#    && \
+#    rm -rf /coform-src
 
 EXPOSE 8080
 
-CMD sleep 20s && service tomcat6 start && tail -f /var/log/tomcat6/catalina.out
+CMD sleep 3m && service tomcat6 start && tail -f /var/log/tomcat6/catalina.out

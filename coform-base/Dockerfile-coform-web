@@ -77,7 +77,7 @@ RUN mkdir -p /root/.m2 && chmod 777 /root/.m2 && \
     cat /root/.m2/setting.xml
 
 RUN cd /coform-src && \
-    mvn –-settings /root/.m2/setting.xml -U clean package -P rcvl-recette  && \ 
+    mvn -s /root/.m2/setting.xml clean package -P rcvl-recette  && \ 
     rm -rf /root/.m2/repository
 
 RUN cd /usr/share/tomcat6/conf/Catalina/localhost && touch coform.xml && \
